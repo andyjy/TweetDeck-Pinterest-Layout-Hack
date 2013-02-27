@@ -1,4 +1,10 @@
 (function($) {
+	// determine colors, which will be different depending on the theme (light/dark)
+	var pageColor = $('body').css('background-color');
+	var bgColor = $('.column').css('background-color');
+	var headingColor = $('.app-header').css('color');
+	var headingBgColor = $('.app-header').css('background-color'); 
+	// add styles
 	$('<style type="text/css"></style>')
 	.html('\
 .app-columns{\
@@ -6,16 +12,16 @@
 	-webkit-column-gap: 10px;\
 	-moz-column-width: 300px;\
 	-moz-column-gap: 10px;\
-	background: #dddddd;\
+	background: ' + pageColor + ';\
 }\
 .column, .column-holder, .column-panel, .column-scroller, .js-chirp-container {\
 	display: inline;\
 	position: inherit;\
 }\
-.column-header { background-color: #7AA2C1; }\
+.column-header, .column-title-back { color: ' + headingColor + '; background-color: ' + headingBgColor + '; }\
 .js-column-header { display: none; }\
 .stream-item {\
-	background-color: white;\
+	background-color: ' + bgColor + ';\
 	-webkit-column-break-inside: avoid;\
 	-moz-column-break-inside: avoid;\
 }\
@@ -33,7 +39,7 @@
 	top: 10%; left: 10%; width: 80%; height: 80%;\
 	z-index: 1;\
 	box-shadow: 0 0 10px #999;\
-	background-color: white;\
+	background-color: ' + bgColor + ';\
 	overflow: auto;\
 }\
 .is-shifted-1 .column-detail .column-scroller {\
@@ -43,6 +49,7 @@
 }\
 ')
 	.appendTo("head");
+	// apply wizardry
 	var columns = $('.column');
 	var firstColumnStream = $($(columns[0]).find('.js-chirp-container')[0]);
 	for (i = 1; i < columns.length; i++) {
