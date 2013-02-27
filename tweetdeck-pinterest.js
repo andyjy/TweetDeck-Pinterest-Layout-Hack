@@ -47,6 +47,7 @@
 	position: relative;\
 	top: 0;\
 }\
+.js-chirp-container .column-scroller, .js-chirp-container .column-scroller .stream-item { overflow: visible; }\
 ')
 	.appendTo("head");
 	// apply wizardry
@@ -72,7 +73,7 @@
 			// we hide and then show to ensure smooth transition
 			$(columns[i]).find('.js-chirp-container .stream-item:visible').each(function() {
 				var item = $(this).addClass('stream-item-in-transit was-column-' + i).hide().clone();
-				var newT = t.clone();
+				var newT = $(columns[i]).data('template').clone();
 				item.appendTo(newT.find('.js-chirp-container'));
 				firstColumnStream.prepend(newT);
 			});
