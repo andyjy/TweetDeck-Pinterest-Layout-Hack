@@ -4,6 +4,8 @@
 .app-columns{\
 	-webkit-column-width: 300px;\
 	-webkit-column-gap: 10px;\
+	-moz-column-width: 300px;\
+	-moz-column-gap: 10px;\
 	background: #dddddd;\
 }\
 .column, .column-holder, .column-panel, .column-scroller, .js-chirp-container {\
@@ -15,6 +17,7 @@
 .stream-item {\
 	background-color: white;\
 	-webkit-column-break-inside: avoid;\
+	-moz-column-break-inside: avoid;\
 }\
 .was-column-1 {	border-left: 3px solid red; }\
 .was-column-2 { border-left: 3px solid blue; }\
@@ -50,9 +53,9 @@
 		c.data('template', t);
 		// move items to first column
 		$(columns[i]).find('article.stream-item').each(function() {
-			var item = $(this).addClass('was-column-' + i).remove();
+			var item = $(this).addClass('was-column-' + i).hide().clone();
 			var newT = t.clone();
-			item.appendTo(newT.find('.js-chirp-container'));
+			item.appendTo(newT.find('.js-chirp-container')).show();
 			firstColumnStream.append(newT);
 		});
 	}
@@ -60,8 +63,8 @@
 		window.setInterval(function(i) {
 			// move items to first column
 			// we hide and then show to ensure smooth transition
-			$(columns[i]).find('.js-chirp-container .stream-item').each(function() {
-				var item = $(this).addClass('stream-item-in-transit was-column-' + i).hide().remove();
+			$(columns[i]).find('.js-chirp-container .stream-item:visible').each(function() {
+				var item = $(this).addClass('stream-item-in-transit was-column-' + i).hide().clone();
 				var newT = t.clone();
 				item.appendTo(newT.find('.js-chirp-container'));
 				firstColumnStream.prepend(newT);
