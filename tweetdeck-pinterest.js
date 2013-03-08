@@ -19,7 +19,9 @@
 	position: inherit;\
 }\
 .column-header, .column-title-back { color: ' + headingColor + '; background-color: ' + headingBgColor + '; }\
+.column-content { position: static; }\
 .js-column-header { display: none; }\
+.has-filters .column-message { display: none; }\
 .stream-item {\
 	background-color: ' + bgColor + ';\
 	-webkit-column-break-inside: avoid;\
