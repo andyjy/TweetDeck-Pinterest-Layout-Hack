@@ -17,6 +17,7 @@
 .column, .column-holder, .column-panel, .column-scroller, .js-chirp-container {\
 	display: inline;\
 	position: inherit;\
+	margin-right: 0;\
 }\
 .column-header, .column-title-back { color: ' + headingColor + '; background-color: ' + headingBgColor + '; }\
 .column-content { position: static; }\
